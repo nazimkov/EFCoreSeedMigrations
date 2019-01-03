@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace EFCoreSeedMigrations.Context
+namespace EFCoreSeedMigrations.SeedMigration.Seed
 {
     public interface IMigrationSeed
     {

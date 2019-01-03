@@ -1,7 +1,7 @@
 ﻿using EFCoreSeedMigrations.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace EFCoreSeedMigrations.Context
+namespace EFCoreSeedMigrations.DataAccess
 {
     public class ProductsDbContext : DbContext
     {

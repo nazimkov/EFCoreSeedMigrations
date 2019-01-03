@@ -1,7 +1,7 @@
-﻿using EFCoreSeedMigrations.Context;
+﻿using EFCoreSeedMigrations.SeedMigration.Seed;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace EFCoreSeedMigrations.Seeds
+namespace EFCoreSeedMigrations.DataAccess.Seed
 {
     public class IntitialMigrationSeed : IMigrationSeed
     {

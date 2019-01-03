@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\EFCoreSeedMigrations\EFCoreSeedMigrations.csproj" />
+    <ProjectReference Include="..\EFCoreSeedMigrations\EFCoreSeedMigrations.DataAccess.csproj" />
   </ItemGroup>
 
 </Project>

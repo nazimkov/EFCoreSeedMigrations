@@ -1,8 +1,8 @@
 ﻿using System;
-using EFCoreSeedMigrations.Context;
+using EFCoreSeedMigrations.SeedMigration.Seed;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace EFCoreSeedMigrations.Migrations
+namespace EFCoreSeedMigrations.DataAccess.Migrations
 {
     public partial class InitialMigration : Migration
     {

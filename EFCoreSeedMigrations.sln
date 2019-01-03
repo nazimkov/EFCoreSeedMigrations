@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFCoreSeedMigrations", "EFCoreSeedMigrations\EFCoreSeedMigrations.csproj", "{E111E513-CCF5-4C1F-B8D7-848E1FAF1B86}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EFCoreSeedMigrations.DataAccess", "EFCoreSeedMigrations\EFCoreSeedMigrations.DataAccess.csproj", "{E111E513-CCF5-4C1F-B8D7-848E1FAF1B86}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFCoreSeedMigrations.API", "EFCoreSeedMigrations.API\EFCoreSeedMigrations.API.csproj", "{8628E096-E48F-4BCD-85C0-584395AB4E30}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EFCoreSeedMigrations.API", "EFCoreSeedMigrations.API\EFCoreSeedMigrations.API.csproj", "{8628E096-E48F-4BCD-85C0-584395AB4E30}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFCoreSeedMigrations.SeedMigration", "EFCoreSeedMigrations.SeedMigration\EFCoreSeedMigrations.SeedMigration.csproj", "{A572665F-3724-42A6-9FA1-9D187553CAED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{8628E096-E48F-4BCD-85C0-584395AB4E30}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8628E096-E48F-4BCD-85C0-584395AB4E30}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8628E096-E48F-4BCD-85C0-584395AB4E30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A572665F-3724-42A6-9FA1-9D187553CAED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A572665F-3724-42A6-9FA1-9D187553CAED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A572665F-3724-42A6-9FA1-9D187553CAED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A572665F-3724-42A6-9FA1-9D187553CAED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

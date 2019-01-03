@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using EFCoreSeedMigrations.SeedMigration.Seed;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.EntityFrameworkCore.Infrastructure;
@@ -8,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Migrations.Internal;
 using System;
 using System.Reflection;
 
-namespace EFCoreSeedMigrations.Context
+namespace EFCoreSeedMigrations.SeedMigration
 {
     public class SeedAwareMigrationsAssembly : MigrationsAssembly
     {

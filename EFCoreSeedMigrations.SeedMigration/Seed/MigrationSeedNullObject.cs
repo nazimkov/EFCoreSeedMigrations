@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace EFCoreSeedMigrations.Context
+namespace EFCoreSeedMigrations.SeedMigration.Seed
 {
     public class MigrationSeedNullObject : IMigrationSeed
     {

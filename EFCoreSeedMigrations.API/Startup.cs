@@ -1,5 +1,7 @@
-﻿using EFCoreSeedMigrations.Context;
-using EFCoreSeedMigrations.Seeds;
+﻿using EFCoreSeedMigrations.DataAccess;
+using EFCoreSeedMigrations.DataAccess.Seed;
+using EFCoreSeedMigrations.DataAccess.Seeds;
+using EFCoreSeedMigrations.SeedMigration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -7,7 +9,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace EFCoreSeedMigrations.API
 {
@@ -27,11 +28,12 @@ namespace EFCoreSeedMigrations.API
 
             services.AddEntityFrameworkSqlServer();
 
-            services.AddScoped<IMigrationSeedFactory, ProductDbContextMigrationSeedFactory>();
-            services.AddScoped<IntitialMigrationSeed>();
+            services.AddEfMigrationSeeds<MigrationSeedsConfiguration>();
+
+            RegisterSeeds(services);
 
             services
-                .AddDbContext<ProductsDbContext>(b => 
+                .AddDbContext<ProductsDbContext>(b =>
                 b.UseSqlServer("Server=(local);Database=EFCoreSeedMigrations;Trusted_Connection=True;MultipleActiveResultSets=true")
                         .ReplaceService<IMigrationsAssembly, SeedAwareMigrationsAssembly>());
         }
@@ -50,6 +52,11 @@ namespace EFCoreSeedMigrations.API
 
             app.UseHttpsRedirection();
             app.UseMvc();
+        }
+
+        private void RegisterSeeds(IServiceCollection services)
+        {
+            services.AddScoped<IntitialMigrationSeed>();
         }
     }
 }
