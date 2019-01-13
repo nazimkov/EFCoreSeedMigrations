@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\EFCoreSeedMigrations\EFCoreSeedMigrations.DataAccess.csproj" />
+    <ProjectReference Include="..\EFCoreSeedMigrations.DataAccess\EFCoreSeedMigrations.DataAccess.csproj" />
   </ItemGroup>
 
 </Project>

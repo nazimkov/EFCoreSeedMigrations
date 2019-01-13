@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EFCoreSeedMigrations.DataAccess", "EFCoreSeedMigrations\EFCoreSeedMigrations.DataAccess.csproj", "{E111E513-CCF5-4C1F-B8D7-848E1FAF1B86}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EFCoreSeedMigrations.DataAccess", "EFCoreSeedMigrations.DataAccess\EFCoreSeedMigrations.DataAccess.csproj", "{E111E513-CCF5-4C1F-B8D7-848E1FAF1B86}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EFCoreSeedMigrations.API", "EFCoreSeedMigrations.API\EFCoreSeedMigrations.API.csproj", "{8628E096-E48F-4BCD-85C0-584395AB4E30}"
 EndProject
