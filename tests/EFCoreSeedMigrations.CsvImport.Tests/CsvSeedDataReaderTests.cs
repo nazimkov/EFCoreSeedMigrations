@@ -1,9 +1,8 @@
 using CsvHelper;
-using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Reflection;
 using Xunit;
+using static EFCoreSeedMigrations.CsvImport.Tests.TestFilesHelper.AssemblyHelper;
 
 namespace EFCoreSeedMigrations.CsvImport.Tests
 {
@@ -16,25 +15,17 @@ namespace EFCoreSeedMigrations.CsvImport.Tests
             _csvSeedDataReader = new CsvSeedDataReader();
         }
 
-        public static string AssemblyDirectory
-        {
-            get
-            {
-                string codeBase = Assembly.GetExecutingAssembly().CodeBase;
-                var uri = new UriBuilder(codeBase);
-                string path = Uri.UnescapeDataString(uri.Path);
-                return Path.GetDirectoryName(path);
-            }
-        }
 
         [Fact]
         public void ReedSeedData_ExistedFileWithValidData_ReturnsHeadersAndObjects()
         {
             // Arrange
-            var records = new List<Foo>
+            var records = new Foo[]
             {
                 new Foo { Id = 1, Name = "one" },
+                new Foo { Id = 2, Name = "second" },
             };
+
             var path = AssemblyDirectory + "\\file.csv";
 
             // Act
@@ -42,9 +33,10 @@ namespace EFCoreSeedMigrations.CsvImport.Tests
             var (headers, resultObjects) = _csvSeedDataReader.ReedSeedData<Foo>(path);
 
             // Assert
-
             Assert.NotNull(resultObjects);
             Assert.NotNull(headers);
+            Assert.Equal(new string[] { nameof(Foo.Id), nameof(Foo.Name) }, headers);
+            Assert.Equal(GetObjects(records), resultObjects);
         }
 
         private void WtiteSeedToFile(string path, IEnumerable<Foo> records)
@@ -52,12 +44,23 @@ namespace EFCoreSeedMigrations.CsvImport.Tests
             using (var writer = new StreamWriter(path))
             using (var csv = new CsvWriter(writer))
             {
-                csv.WriteHeader<Foo>();
                 csv.WriteRecords(records);
             }
         }
 
-        public class Foo
+        private object[,] GetObjects(Foo[] records)
+        {
+            var result = new object[records.Length, 2];
+            for (int i = 0; i < records.Length; i++)
+            {
+                result[i, 0] = records[i].Id;
+                result[i, 1] = records[i].Name;
+            }
+
+            return result;
+        }
+
+        private class Foo
         {
             public int Id { get; set; }
             public string Name { get; set; }

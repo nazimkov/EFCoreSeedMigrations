@@ -13,6 +13,7 @@ namespace EFCoreSeedMigrations.CsvImport
             using (var reader = new StreamReader(filePath))
             using (var csv = new CsvReader(reader))
             {
+                csv.Read();
                 csv.ReadHeader();
                 var headers = csv.Context.HeaderRecord;
                 var records = csv.GetRecords<TModel>();
@@ -25,7 +26,7 @@ namespace EFCoreSeedMigrations.CsvImport
         {
             var recordsArray = records.ToArray();
             var propertiesCount = CountTypeProperties(typeof(TModel));
-            var recordsCount = records.Count();
+            var recordsCount = recordsArray.Length;
             var resultObjects = new object[recordsCount, propertiesCount];
 
             for (int i = 0; i < recordsCount; i++)
