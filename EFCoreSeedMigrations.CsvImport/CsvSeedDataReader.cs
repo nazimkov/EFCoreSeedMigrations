@@ -43,7 +43,7 @@ namespace EFCoreSeedMigrations.CsvImport
 
         private int CountTypeProperties(Type type) => type.GetProperties().Length;
 
-        public Dictionary<string, object> DictionaryFromType(object atype)
+        private Dictionary<string, object> DictionaryFromType(object atype)
         {
             if (atype == null)
             {
