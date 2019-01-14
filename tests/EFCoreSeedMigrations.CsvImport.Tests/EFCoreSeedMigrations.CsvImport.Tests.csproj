@@ -14,10 +14,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="TestFilesHelper\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\EFCoreSeedMigrations.CsvImport\EFCoreSeedMigrations.CsvImport.csproj" />
   </ItemGroup>
 

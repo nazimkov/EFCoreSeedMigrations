@@ -2,6 +2,6 @@
 {
     public interface ICsvSeedDataReader
     {
-        (string[], object[,]) ReedSeedData<TModel>(string filePath) where TModel : class, new();
+        SeedData ReedSeedData<TModel>(string filePath) where TModel : class, new();
     }
 }

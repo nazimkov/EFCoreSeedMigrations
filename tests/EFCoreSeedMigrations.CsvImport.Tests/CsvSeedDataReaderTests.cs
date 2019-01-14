@@ -30,13 +30,13 @@ namespace EFCoreSeedMigrations.CsvImport.Tests
 
             // Act
             WtiteSeedToFile(path, records);
-            var (headers, resultObjects) = _csvSeedDataReader.ReedSeedData<Foo>(path);
+            var seedData = _csvSeedDataReader.ReedSeedData<Foo>(path);
 
             // Assert
-            Assert.NotNull(resultObjects);
-            Assert.NotNull(headers);
-            Assert.Equal(new string[] { nameof(Foo.Id), nameof(Foo.Name) }, headers);
-            Assert.Equal(GetObjects(records), resultObjects);
+            Assert.NotNull(seedData.Headers);
+            Assert.NotNull(seedData.Records);
+            Assert.Equal(new string[] { nameof(Foo.Id), nameof(Foo.Name) }, seedData.Headers);
+            Assert.Equal(GetObjects(records), seedData.Records);
         }
 
         private void WtiteSeedToFile(string path, IEnumerable<Foo> records)
