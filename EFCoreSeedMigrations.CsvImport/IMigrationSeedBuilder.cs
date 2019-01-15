@@ -4,10 +4,10 @@ namespace EFCoreSeedMigrations.CsvImport
 {
     public interface IMigrationSeedBuilder
     {
-        MigrationBuilder MigrationBuilder { get; set; }
+        MigrationBuilder MigrationBuilder { set; }
 
-        void InsertData<TModel>(string filePath);
-        void DeleteData<TModel>(string filePath);
-        void UpdateData<TModel>(string filePath);
+        void InsertData<TModel>(string filePath, string table, string schema = null) where TModel : class, new();
+        void DeleteData<TModel>(string filePath, string table, string schema = null) where TModel : class, new();
+        void UpdateData<TModel>(string filePath, string table, string schema = null) where TModel : class, new();
     }
 }
