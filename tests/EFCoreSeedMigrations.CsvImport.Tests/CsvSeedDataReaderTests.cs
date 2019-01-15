@@ -39,7 +39,29 @@ namespace EFCoreSeedMigrations.CsvImport.Tests
             Assert.Equal(GetObjects(records), seedData.Records);
         }
 
-        private void WtiteSeedToFile(string path, IEnumerable<Foo> records)
+
+        [Fact]
+        public void ReedSeedData_TypeWithoutProperties_ReturnsEmptyObjectsAndHeaders()
+        {
+            // Arrange
+            var records = new Foo[]
+            {
+                new Foo()
+            };
+
+            var path = AssemblyDirectory + "\\file.csv";
+
+            // Act
+            WtiteSeedToFile(path, records);
+            var seedData = _csvSeedDataReader.ReedSeedData<EmptyFoo>(path);
+
+            // Assert
+            Assert.False(seedData.IsAnyData());
+        }
+
+
+
+        private void WtiteSeedToFile<Type>(string path, IEnumerable<Type> records)
         {
             using (var writer = new StreamWriter(path))
             using (var csv = new CsvWriter(writer))
@@ -65,5 +87,7 @@ namespace EFCoreSeedMigrations.CsvImport.Tests
             public int Id { get; set; }
             public string Name { get; set; }
         }
+
+        private class EmptyFoo { };
     }
 }
