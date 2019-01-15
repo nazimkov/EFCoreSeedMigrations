@@ -13,12 +13,20 @@ namespace EFCoreSeedMigrations.CsvImport
 
         public MigrationBuilder MigrationBuilder { private get; set; }
 
-        public void DeleteData<TModel>(string filePath, string table, string schema = null) where TModel : class, new()
+        public void DeleteData<TModel>(string filePath, string table, string schema = null)
+            where TModel : class, new()
         {
-            throw new System.NotImplementedException();
+            var seedData = _csvSeedDataReader.ReedSeedData<TModel>(filePath);
+            if (!seedData.IsAnyData())
+            {
+                return;
+            }
+
+            MigrationBuilder.DeleteData(table, seedData.Headers, seedData.Records, schema);
         }
 
-        public void InsertData<TModel>(string filePath, string table, string schema = null) where TModel : class, new()
+        public void InsertData<TModel>(string filePath, string table, string schema = null)
+            where TModel : class, new()
         {
             var seedData = _csvSeedDataReader.ReedSeedData<TModel>(filePath);
             if (!seedData.IsAnyData())
@@ -29,7 +37,8 @@ namespace EFCoreSeedMigrations.CsvImport
             MigrationBuilder.InsertData(table, seedData.Headers, seedData.Records, schema);
         }
 
-        public void UpdateData<TModel>(string filePath, string table, string schema = null) where TModel : class, new()
+        public void UpdateData<TModel>(string filePath, string table, string schema = null)
+            where TModel : class, new()
         {
             throw new System.NotImplementedException();
         }
