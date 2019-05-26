@@ -1,3 +1,4 @@
+[![Build status](https://ci.appveyor.com/api/projects/status/bkb2i8jgqwl182xh?svg=true)](https://ci.appveyor.com/project/nazimkov/efcoreseedmigrations)
 # EFCoreSeedMigrations
 Entity Framework Core demo for Seed data integrated into generated Migrations
 The goal of example project is to show the seeding data strategy in the scope of existed EF Core generated migration.
