@@ -39,3 +39,10 @@ Thumbs.db
 
 # dotCover
 *.dotCover
+
+# VS code git ignore
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
