@@ -4,11 +4,11 @@ using Microsoft.Extensions.Hosting;
 
 namespace EFCoreSeedMigrations.API.Migrations
 {
-    internal sealed class MigrationSeedsAplicabilitySpecification : IMigrationSeedsApplicabilitySpecification
+    internal sealed class MigrationSeedsApplicabilitySpecification : IMigrationSeedsApplicabilitySpecification
     {
         private readonly IWebHostEnvironment _environment;
 
-        public MigrationSeedsAplicabilitySpecification(IWebHostEnvironment environment)
+        public MigrationSeedsApplicabilitySpecification(IWebHostEnvironment environment)
         {
             _environment = environment;
         }
