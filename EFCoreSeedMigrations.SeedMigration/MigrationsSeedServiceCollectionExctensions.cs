@@ -1,17 +1,16 @@
 ﻿using EFCoreSeedMigrations.SeedMigration.Seed;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace EFCoreSeedMigrations.SeedMigration
 {
     public static class MigrationsSeedServiceCollectionExctensions
     {
-        public static IServiceCollection AddEfMigrationSeeds<TConfiguration>(this IServiceCollection services)
+        public static IServiceCollection AddEfMigrationSeeds<TConfiguration, TSpecification>(this IServiceCollection services)
             where TConfiguration : class, IMigrationSeedsConfiguration
+            where TSpecification : class, IMigrationSeedsApplicabilitySpecification
         {
             services.AddScoped<IMigrationSeedFactory, MigrationSeedFactory>();
+            services.AddSingleton<IMigrationSeedsApplicabilitySpecification, TSpecification>();
             services.AddSingleton<IMigrationSeedsConfiguration, TConfiguration>();
 
             return services;

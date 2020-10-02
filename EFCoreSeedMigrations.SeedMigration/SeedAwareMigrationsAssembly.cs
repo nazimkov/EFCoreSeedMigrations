@@ -1,19 +1,20 @@
-﻿using EFCoreSeedMigrations.SeedMigration.Seed;
-using Microsoft.AspNetCore.Hosting;
+﻿using System;
+using System.Reflection;
+using EFCoreSeedMigrations.SeedMigration.Seed;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Migrations.Internal;
-using System;
-using System.Reflection;
 
 namespace EFCoreSeedMigrations.SeedMigration
 {
+#pragma warning disable EF1001 // Internal EF Core API usage.
+
     public class SeedAwareMigrationsAssembly : MigrationsAssembly
+#pragma warning restore EF1001 // Internal EF Core API usage.
     {
-        private readonly IHostingEnvironment _env;
+        private readonly IMigrationSeedsApplicabilitySpecification _seedSpecs;
         private readonly IMigrationSeedFactory _seedFactory;
 
         /// <inheritdoc />
@@ -24,7 +25,7 @@ namespace EFCoreSeedMigrations.SeedMigration
             IDiagnosticsLogger<DbLoggerCategory.Migrations> logger)
             : base(currentContext, options, idGenerator, logger)
         {
-            _env = currentContext.Context.GetService<IHostingEnvironment>();
+            _seedSpecs = currentContext.Context.GetService<IMigrationSeedsApplicabilitySpecification>();
             _seedFactory = currentContext.Context.GetService<IMigrationSeedFactory>();
         }
 
@@ -42,7 +43,7 @@ namespace EFCoreSeedMigrations.SeedMigration
             {
                 var migrationClassType = migrationClass.AsType();
 
-                var migrationSeed = _env.IsDevelopment()
+                var migrationSeed = _seedSpecs.ShouldSeed
                         ? _seedFactory.GetMigrationSeed(migrationClassType)
                         : new MigrationSeedNullObject();
 
@@ -51,7 +52,9 @@ namespace EFCoreSeedMigrations.SeedMigration
                 return instance;
             }
 
+#pragma warning disable EF1001 // Internal EF Core API usage.
             return base.CreateMigration(migrationClass, activeProvider);
+#pragma warning restore EF1001 // Internal EF Core API usage.
         }
     }
 }

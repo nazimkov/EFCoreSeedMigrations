@@ -1,14 +1,15 @@
-﻿using EFCoreSeedMigrations.DataAccess;
+﻿using EFCoreSeedMigrations.API.Migrations;
+using EFCoreSeedMigrations.DataAccess;
 using EFCoreSeedMigrations.DataAccess.Seed;
 using EFCoreSeedMigrations.DataAccess.Seeds;
 using EFCoreSeedMigrations.SeedMigration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 namespace EFCoreSeedMigrations.API
 {
@@ -24,22 +25,20 @@ namespace EFCoreSeedMigrations.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-
-            services.AddEntityFrameworkSqlServer();
-
-            services.AddEfMigrationSeeds<MigrationSeedsConfiguration>();
+            services.AddEfMigrationSeeds<MigrationSeedsConfiguration, MigrationSeedsApplicabilitySpecification>();
 
             RegisterSeeds(services);
 
             services
                 .AddDbContext<ProductsDbContext>(b =>
-                b.UseSqlServer("Server=(local);Database=EFCoreSeedMigrations;Trusted_Connection=True;MultipleActiveResultSets=true")
+                b.UseSqlServer(Configuration.GetConnectionString("ProductsDb"))
                         .ReplaceService<IMigrationsAssembly, SeedAwareMigrationsAssembly>());
+
+            services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -51,7 +50,13 @@ namespace EFCoreSeedMigrations.API
             }
 
             app.UseHttpsRedirection();
-            app.UseMvc();
+
+            app.UseRouting();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
         }
 
         private void RegisterSeeds(IServiceCollection services)
