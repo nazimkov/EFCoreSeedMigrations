@@ -1,8 +1,8 @@
-﻿using EFCoreSeedMigrations.DataAccess.Migrations;
+﻿using System;
+using System.Collections.Generic;
+using EFCoreSeedMigrations.DataAccess.Migrations;
 using EFCoreSeedMigrations.DataAccess.Seed;
 using EFCoreSeedMigrations.SeedMigration.Seed;
-using System;
-using System.Collections.Generic;
 
 namespace EFCoreSeedMigrations.DataAccess.Seeds
 {
