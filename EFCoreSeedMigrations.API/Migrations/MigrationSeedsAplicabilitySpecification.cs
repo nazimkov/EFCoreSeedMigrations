@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace EFCoreSeedMigrations.API.Environment
+namespace EFCoreSeedMigrations.API.Migrations
 {
     internal sealed class MigrationSeedsAplicabilitySpecification : IMigrationSeedsApplicabilitySpecification
     {

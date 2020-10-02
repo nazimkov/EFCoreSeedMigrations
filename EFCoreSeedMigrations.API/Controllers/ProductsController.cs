@@ -1,24 +1,23 @@
-﻿using EFCoreSeedMigrations.DataAccess;
+﻿using System.Collections.Generic;
+using System.Linq;
+using EFCoreSeedMigrations.DataAccess;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace EFCoreSeedMigrations.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ValuesController : ControllerBase
+    public class ProductsController : ControllerBase
     {
         private readonly ProductsDbContext _context;
 
-        public ValuesController(ProductsDbContext context)
+        public ProductsController(ProductsDbContext context)
         {
             _context = context;
             _context.Database.Migrate();
         }
 
-        // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {

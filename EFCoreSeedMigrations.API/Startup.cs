@@ -1,4 +1,4 @@
-﻿using EFCoreSeedMigrations.API.Environment;
+﻿using EFCoreSeedMigrations.API.Migrations;
 using EFCoreSeedMigrations.DataAccess;
 using EFCoreSeedMigrations.DataAccess.Seed;
 using EFCoreSeedMigrations.DataAccess.Seeds;
@@ -25,8 +25,6 @@ namespace EFCoreSeedMigrations.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddEntityFrameworkSqlServer();
-
             services.AddEfMigrationSeeds<MigrationSeedsConfiguration, MigrationSeedsAplicabilitySpecification>();
 
             RegisterSeeds(services);
@@ -35,6 +33,8 @@ namespace EFCoreSeedMigrations.API
                 .AddDbContext<ProductsDbContext>(b =>
                 b.UseSqlServer(Configuration.GetConnectionString("ProductsDb"))
                         .ReplaceService<IMigrationsAssembly, SeedAwareMigrationsAssembly>());
+
+            services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,8 +52,6 @@ namespace EFCoreSeedMigrations.API
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
-            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
