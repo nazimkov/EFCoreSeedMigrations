@@ -9,21 +9,15 @@ namespace EFCoreSeedMigrations.SeedMigration.Seed
 
         public MigrationSeedFactory(IServiceProvider serviceProvider, IMigrationSeedsConfiguration seedsConfiguration)
         {
-            _serviceProvider = serviceProvider;
-            _seedsConfiguration = seedsConfiguration;
+            _serviceProvider = serviceProvider ?? throw new ArgumentNullException(nameof(serviceProvider));
+            _seedsConfiguration = seedsConfiguration ?? throw new ArgumentNullException(nameof(seedsConfiguration));
         }
 
         /// <inheritdoc />
         public IMigrationSeed GetMigrationSeed(Type migrationType)
         {
-            var seeds = _seedsConfiguration.MigrationSeeds;
-
-            if (!seeds.ContainsKey(migrationType))
-            {
-                throw new ArgumentException($"Cannot find migration type {nameof(migrationType)}");
-            }
-
-            return _serviceProvider.GetService(seeds[migrationType]) as IMigrationSeed;
+            var migrationSeedType = _seedsConfiguration.GetMigrationSeedType(migrationType);
+            return (IMigrationSeed)_serviceProvider.GetService(migrationSeedType);
         }
     }
 }
