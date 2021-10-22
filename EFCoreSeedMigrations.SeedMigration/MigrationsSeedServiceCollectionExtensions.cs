@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace EFCoreSeedMigrations.SeedMigration
 {
-    public static class MigrationsSeedServiceCollectionExctensions
+    public static class MigrationsSeedServiceCollectionExtensions
     {
         public static IServiceCollection AddEfMigrationSeeds<TConfiguration, TSpecification>(this IServiceCollection services)
             where TConfiguration : class, IMigrationSeedsConfiguration

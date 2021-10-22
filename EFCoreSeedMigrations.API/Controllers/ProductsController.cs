@@ -21,7 +21,8 @@ namespace EFCoreSeedMigrations.API.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
-            return Ok(_context.Products.ToArray());
+            var products = _context.Products.ToArray();
+            return Ok(products);
         }
     }
 }

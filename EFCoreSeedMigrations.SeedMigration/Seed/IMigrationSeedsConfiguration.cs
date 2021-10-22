@@ -5,6 +5,6 @@ namespace EFCoreSeedMigrations.SeedMigration.Seed
 {
     public interface IMigrationSeedsConfiguration
     {
-        IReadOnlyDictionary<Type, Type> MigrationSeeds { get; }
+        Type GetMigrationSeedType(Type migrationType);
     }
 }
